@@ -1,0 +1,5 @@
+
+- name: install the latest version of php
+  yum:
+    name: php
+    state: latest
