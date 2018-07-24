@@ -3,8 +3,8 @@
 Steps
 
 1. build the image
-   checkout and do 'docker build . ' 
+   checkout and do 'docker build -t rajamoses/nginx:latest . ' 
 2. Run the container
-   docker run -d -p 80:80 chentex/docker-nginx-centos:latest
+   docker run -d -p 80:80 rajamoses/nginx:latest
 3. Test nginx
    docker exec -it 4ab76ee53058 bash 
