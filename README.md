@@ -12,5 +12,5 @@ Steps
 5. For nginx: curl http://172.17.0.4/index.html 
 6. For Apache: curl http://172.17.0.4/index.php 
 7. For Protected: curl -u moses:moses -i -H 'Accept:application/json' http://172.17.0.4:8080/protected/moses.txt
-8. For CORS: curl -I http://172.17.0.4:8080/media/moses.ttf
+8. For CORS: curl -I http://172.17.0.4:8080/media/Airmole.ttf
 
