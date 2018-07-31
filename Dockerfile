@@ -70,6 +70,17 @@ RUN rm /etc/httpd/conf.d/welcome.conf \
     && sed -i -e "s/\;error_log\ =\ php_errors\.log/error_log\ =\ \/var\/log\/php_errors\.log/g" /etc/php.ini \
     && echo "ServerTokens Prod" >> /etc/httpd/conf/httpd.conf \
     && echo "ServerSignature Off" >> /etc/httpd/conf/httpd.conf
+    
+RUN yum install -y httpd-tools \
+    && mkdir /etc/htpasswd \
+    && htpasswd -cb /etc/htpasswd/.htpasswd moses moses \
+    && mkdir /var/www/media \
+    && wget http://webpagepublicity.com/free-fonts/a/Airmole.ttf -P /var/www/media/ \
+    && mkdir /var/www/protected \
+    && touch /var/www/protected/moses.txt
+
+RUN echo " This is a protected file with authorized userse" >> /var/www/protected/moses.txt
+
 
 RUN yum install -y curl
 
