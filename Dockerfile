@@ -71,6 +71,7 @@ RUN rm /etc/httpd/conf.d/welcome.conf \
     && echo "ServerTokens Prod" >> /etc/httpd/conf/httpd.conf \
     && echo "ServerSignature Off" >> /etc/httpd/conf/httpd.conf
 
+RUN yum install -y curl
 
 RUN yum clean all
 
@@ -84,4 +85,3 @@ ADD run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh
 
 CMD ["/run-httpd.sh"]
-
