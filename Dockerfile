@@ -90,6 +90,8 @@ EXPOSE 80
 EXPOSE 8080
 
 ADD nginx.conf  /etc/nginx/nginx.conf
+ADD httpd.conf /etc/httpd/conf/httpd.conf
+ADD info.php /var/www/info.php
 
 ADD run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh
