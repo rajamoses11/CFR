@@ -8,7 +8,7 @@ ENV nginxversion="1.12.2-1" \
 
 VOLUME ["/var/www/html" , "/usr/share/nginx/html" ]
 
-RUN yum install -y wget openssl sed initscripts &&\
+RUN yum install -y wget curl openssl sed initscripts &&\
     yum -y autoremove &&\
     yum clean all &&\
     wget http://nginx.org/packages/$os/$osversion/x86_64/RPMS/nginx-$nginxversion.el$elversion.ngx.x86_64.rpm &&\
@@ -59,6 +59,8 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 
 RUN yum install -y httpd-devel.x86_64 
 
+RUN yum --enablerepo=centosplus install mod_php
+
 RUN usermod -u 1000 apache && ln -sf /dev/stdout /var/log/httpd/access_log && ln -sf /dev/stderr /var/log/httpd/error_log
 
 
@@ -80,9 +82,6 @@ RUN yum install -y httpd-tools \
     && touch /var/www/protected/moses.txt
 
 RUN echo " This is a protected file with authorized userse" >> /var/www/protected/moses.txt
-
-
-RUN yum install -y curl
 
 RUN yum clean all
 
