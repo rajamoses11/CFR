@@ -57,7 +57,9 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
     ln -s /etc/opt/remi/php70/pear /etc/pear
 
 
-RUN yum install -y httpd-devel.x86_64 
+RUN yum install -y httpd-devel.x86_64 && \
+    yum install -y mod_ssl
+
 
 RUN yum --enablerepo=centosplus install mod_php
 
@@ -79,6 +81,7 @@ RUN yum install -y httpd-tools \
     && mkdir /var/www/media \
     && wget http://webpagepublicity.com/free-fonts/a/Airmole.ttf -P /var/www/media/ \
     && mkdir /var/www/protected \
+    && mkdir /etc/ssl/private \
     && touch /var/www/protected/moses.txt
 
 RUN echo " This is a protected file with authorized userse" >> /var/www/protected/moses.txt
@@ -88,10 +91,17 @@ RUN yum clean all
 EXPOSE 80
 
 EXPOSE 8080
+EXPOSE 443
 
+ADD index.php /var/www/index.php
 ADD nginx.conf  /etc/nginx/nginx.conf
+ADD ssl.conf /etc/httpd/conf/httpd.conf
+ADD apache-selfsigned.crt /etc/ssl/certs/apache-selfsigned.crt
+ADD apache-selfsigned.key /etc/ssl/private/apache-selfsigned.key
 ADD httpd.conf /etc/httpd/conf/httpd.conf
-ADD info.php /var/www/info.php
+ADD run-httpd.sh /run-httpd.sh
+RUN chmod -v +x /run-httpd.sh
+
 
 ADD run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh
