@@ -1,5 +1,12 @@
-
 - name: install the latest version of php
   yum:
     name: php
     state: latest
+  tags:
+     - php_install
+
+- name: Copy index.php template
+  template:
+    src: index.php
+    dest: /var/www/index.php
+  register: index_php
