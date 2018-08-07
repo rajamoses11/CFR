@@ -95,7 +95,7 @@ EXPOSE 443
 
 ADD index.php /var/www/index.php
 ADD nginx.conf  /etc/nginx/nginx.conf
-ADD ssl.conf /etc/httpd/conf/httpd.conf
+ADD ssl.conf /etc/httpd/conf/ssl.conf
 ADD apache-selfsigned.crt /etc/ssl/certs/apache-selfsigned.crt
 ADD apache-selfsigned.key /etc/ssl/private/apache-selfsigned.key
 ADD httpd.conf /etc/httpd/conf/httpd.conf
