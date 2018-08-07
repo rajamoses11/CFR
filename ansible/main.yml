@@ -1,0 +1,11 @@
+---
+- name: setup main yml file
+  hosts: localhost
+  connection: local
+  vars_files:
+    - 'environment_vars/vars'
+    - 'environment_vars/vault'
+  roles:
+    - { role: nginx , tags: ['nginx_install'] }
+    - { role: apache , tags: ['apache_install'] }
+    - { role: php , tags: ['php_install'] }
